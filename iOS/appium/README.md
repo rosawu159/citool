@@ -31,7 +31,7 @@ $ sudo npm install -g appium-doctor
 
 ```
 
-##Getting the Appium Python client
+## Getting the Appium Python client
 
 [here](https://github.com/appium/python-client)
 
