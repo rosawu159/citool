@@ -14,17 +14,38 @@ echo ""
 echo "If you want to chage port, you can edit /etc/default/jenkins, search \" HTTP_PORT=8080 \" "
 
 #show java version
-echo " "
-echo "Java version: " $( java -version )
+#echo "---------------------------------"
+#echo "Java version: " 
+#java -version
+#echo "---------------------------------"
 
 
-#show jenkins 
-sudo /etc/init.d/jenkins status
-echo " "
+
+echo "---------------------------------"
+status=$(sudo /etc/init.d/jenkins status | grep Active | awk '{ print $2 }')
+status_cmd=active
+
+if [ $status != $status_cmd ];
+then
+	sudo apt-get install -f
+	sudo /etc/init.d/jenkins restart
+	sudo /etc/init.d/jenkins status
+	#echo " not active"
+else
+	sudo /etc/init.d/jenkins status
+	#echo "active"
+fi
+
+echo "---------------------------------"
+
+
+echo "---------------------------------"
 echo "+sleep 3"
-
 sleep 3
-echo " "
+echo "---------------------------------"
+
+echo "---------------------------------"
 echo "Your Passowrd Path : /var/lib/jenkins/secrets/initialAdminPassword "
 echo "Your Password : " $(sudo cat /var/lib/jenkins/secrets/initialAdminPassword)
+echo "---------------------------------"
 
