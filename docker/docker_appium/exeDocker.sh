@@ -1,6 +1,6 @@
 #! /bin/bash
 
-container_name=Jenkins
+container_name=Appium
 docker exec -it $container_name $1
 
 
