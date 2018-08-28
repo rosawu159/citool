@@ -1,4 +1,4 @@
-image = "icl/docker-web"
+image = "icl/docker-web:0.2"
 container = "Web"
 user="web_user"
 localpath="/home/icl/docker-storage/web"

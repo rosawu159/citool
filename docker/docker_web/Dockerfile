@@ -32,7 +32,7 @@ RUN echo "#! /bin/bash" >> /tmp/source.sh
 RUN echo "git clone https://github.com/creationix/nvm.git /usr/local/nvm" >> /tmp/source.sh
 RUN echo "cd /usr/local/nvm && git checkout v0.33.11" >> /tmp/source.sh
 RUN echo ". /usr/local/nvm/nvm.sh" >> /tmp/source.sh
-RUN echo "nvm install 6.11.0" >> /tmp/source.sh
+RUN echo "nvm install 6.11.3" >> /tmp/source.sh
 RUN echo "node -v " >> /tmp/source.sh
 RUN echo "npm -v " >> /tmp/source.sh
 RUN echo "npm i pm2 -g" >> /tmp/source.sh
@@ -61,7 +61,6 @@ ENV PATH /usr/local/rvm/rubies/ruby-2.5.1/bin:/usr/local/rvm/bin:/usr/local/sbin
 RUN gem i bundler
 RUN gem i thor
 RUN rvm alias create default 2.5.1
-
 
 RUN adduser $user rvm
 USER $user
