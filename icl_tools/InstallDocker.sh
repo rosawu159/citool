@@ -1,6 +1,5 @@
 #! /bin/bash
 
-
 sudo apt-get update
 
 #Install bridge
@@ -29,14 +28,11 @@ sudo apt-get install -y docker-ce
 #check docker group 
 cat /etc/group | grep docker
 
-#add docker to group
-#sudo groupadd docker
-
 #add user to docker group
 sudo gpasswd -a ${USER} docker
 
 #docker restart
 sudo service docker restart
 
-echo "login again Please"
+echo "Login again"
 
