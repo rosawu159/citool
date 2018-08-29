@@ -1,7 +1,6 @@
-
-image = "icl/docker-appium"
-container = "Appium"
-path= "/home/icl/docker-storage/appium:/data"
+image = "icl/docker-appium:0.2"
+container = "Appium_container"
+path= "/home/icl/docker-storage/Appium:/data"
 #path="Storage"
 adbpath="5037:5037"
 port="7878:7878"

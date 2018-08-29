@@ -1,4 +1,3 @@
-
 image = "icl/docker-appium"
 container = "Appium"
 path= "/home/icl/docker-storage/appium:/data"
