@@ -1,9 +1,9 @@
 image = "icl/docker-mongodb"
-container = "MongoDB"
+container = "Mongodb_container"
 user="mongodb_user"
-localpath="/home/icl/docker-storage/mongodb"
-path= ${localpath}":/home/"$user
-port="27017:38383"
+localpath="/home/icl/docker-storage/Web/db"
+path= ${localpath}:"/data"
+port="27017:27017"
 
 image:
 	docker build -t ${image} --network my-net .

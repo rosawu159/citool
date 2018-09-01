@@ -2,7 +2,7 @@ image = "icl/docker-web:0.2"
 container = "Web"
 user="web_user"
 localpath="/home/icl/docker-storage/web"
-path= ${localpath}":/home/"$user
+path= ${localpath}:"/data"
 
 image:
 	docker build -t ${image} --network my-net .

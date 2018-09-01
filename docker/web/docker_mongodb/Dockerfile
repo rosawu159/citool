@@ -10,11 +10,8 @@ RUN apt-get install -y vim sudo curl wget bash-completion openssl expect build-e
 RUN useradd --create-home --shell /bin/bash --password $(openssl passwd -1 icl) $user
 
 RUN adduser $user sudo
-RUN echo 'root:root' | chpasswd
+RUN echo 'root:icl' | chpasswd
 
 #define working directoty
-WORKDIR /home/$user
-
-
-
+WORKDIR /data
 

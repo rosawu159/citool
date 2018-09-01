@@ -1,9 +1,8 @@
-
-image = "icl/docker-web"
-container = "Web"
-user="web_user"
-localpath="/home/icl/docker-storage/web"
-path= ${localpath}":/home/"$user
+image = "icl/docker-x86"
+container = "Android_X86_container"
+#user="android_x86_user"
+localpath="/home/icl/docker-storage/Android_x86"
+path= ${localpath}:"/data"
 
 image:
 	docker build -t ${image} --network my-net .
