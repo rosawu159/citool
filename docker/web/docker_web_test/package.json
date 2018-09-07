@@ -1,0 +1,21 @@
+{
+  "name": "web_test",
+  "version": "1.0.0",
+  "description": "test web api",
+  "main": "auth.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "chai": "*",
+    "chai-http": "*",
+    "fs": "0.0.1-security",
+    "mocha": "*",
+    "moment": "^2.22.2"
+  },
+  "author": "icl",
+  "license": "ISC",
+  "devDependencies": {
+    "mocha": "^5.2.0"
+  }
+}
