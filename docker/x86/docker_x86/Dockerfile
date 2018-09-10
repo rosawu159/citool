@@ -33,6 +33,5 @@ RUN adduser $user sudo
 RUN echo 'root:icl' | chpasswd
 ENV USER=$(whoami)
 
-
-
+RUN pip install prettytable Mako pyaml dateutils
 
