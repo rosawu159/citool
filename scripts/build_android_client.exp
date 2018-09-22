@@ -1,0 +1,28 @@
+#!/usr/bin/expect
+
+# Author phchi
+# Date : 2018-09-07
+# Phone : 14502
+# Descript : Automatic build android client
+
+#### Basic Setting ####
+set Host_Tip "icl@docker"
+set Android_Client_Code_DIR "/srv/Container/android_client/Brahma_Android_Client"
+set timeout 20
+#### End Basic Setting ####
+
+
+#proc update_code() {
+#    
+#}
+
+proc Login_Host {} {
+  global Host_Tip
+
+  spawn /bin/bash
+  send "\r"
+  expect $Host_Tip {}
+  return $spawn_id
+}
+
+set cpu1 [ Login_Host]
