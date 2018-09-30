@@ -2,7 +2,8 @@ import os
 from time import sleep
 import pytest
 import unittest
-
+import sys
+import threading
 from appium import webdriver
 from appium.webdriver.common.touch_action import TouchAction
 
@@ -12,56 +13,55 @@ PATH = lambda p: os.path.abspath(
 )
 
 class SimpleAndroidTests(unittest.TestCase):
+    #device setting
     def setUp(self):
         desired_caps = {}
         desired_caps['platformName'] = 'Android'
-        desired_caps['platformVersion'] = '7.0'
-        desired_caps['deviceName'] = 'GBAZCY02D044NV4'
-        desired_caps['app'] = PATH('/home/rw/Downloads/app-debug.apk')
+        desired_caps['platformVersion'] = '8.0.0'
+        desired_caps['deviceName'] = 'FA76X1802626'
+        desired_caps['app'] = PATH('/home/rw/Downloads/APPortal_for Rosa.apk')
+
         desired_caps['appPackage'] = 'brahma.vmi.apportal'
         desired_caps['appActivity'] = 'brahma.vmi.brahmalibrary.wcitui.BrahmaLoginWITCActivity'
+        #desired_caps['noReset'] = True
+        desired_caps['autoGrantPermissions'] = True
 
-        self.driver = webdriver.Remote('http://localhost:4723/wd/hub', desired_caps)
+        self.driver = webdriver.Remote('http://localhost:7879/wd/hub', desired_caps)
     
     def test_a_find_elements(self):
+        action = TouchAction(self.driver)
 
-        sleep(5)
+        sleep(2)
 
+        #Finded all EditText
         textfields = self.driver.find_elements_by_class_name("android.widget.EditText")
-        textfields[0].send_keys("112.121.106.180")
-        textfields[1].send_keys("3000")
-        textfields[2].send_keys("bigrain")
-        textfields[3].send_keys("s123")
+        textfields[0].send_keys(sys.argv[1])
+        action.tap(None,300,800,1).perform()
 
+        textfields[1].send_keys(sys.argv[2])
+        action.tap(None,300,800,1).perform()
+
+        textfields[2].send_keys(sys.argv[3])
+        action.tap(None,300,800,1).perform()
+
+        textfields[3].send_keys(sys.argv[4])
+        action.tap(None,300,800,1).perform()
+
+        #select radio button
         self.driver.find_element_by_android_uiautomator('new UiSelector().resourceId("brahma.vmi.apportal:id/vmi")').click()
-
         self.driver.find_element_by_android_uiautomator('new UiSelector().resourceId("brahma.vmi.apportal:id/standard")').click()
 
-        el = self.driver.find_element_by_android_uiautomator('new UiSelector().resourceId("brahma.vmi.apportal:id/buttonWCITLogin")')
-        el.click()
+        #click login button
+        self.driver.find_element_by_android_uiautomator('new UiSelector().resourceId("brahma.vmi.apportal:id/buttonWCITLogin")').click()
+         
+        try:
+             #if not found "login button" will be triggle "except". 
+             self.driver.find_element_by_android_uiautomator('new UiSelector().resourceId("brahma.vmi.apportal:id/buttonWCITLogin")')
+             os._exit(1)
 
-        r = self.driver.get_window_size()
-        x=r['width']*0.5
-        y1=r['height']*0.5
-        y2=r['height']*0.3
-        action = TouchAction(self.driver)
-        sleep(2)
-        action.tap(None,500,1500,1).perform()
-        sleep(5)
-        action.press(None, x, y1).move_to(None, x, y2).release().perform()
-        sleep(2)
-        #action.tap(None,40,800,1).perform()#scanner
-        action.press(None, x, y2).move_to(None, x, y1).release().perform()
-        sleep(2)
-        action.tap(None,250,850,1).perform()#firefox
-        sleep(2)
-        action.tap(None,400,300,1).perform()#clickURL
-        driver.find_element_by_id("user_name").send_keys("fnngj")
-
-
-
-
-
+        except:
+             print("login success!")
+             os._exit(0)
 
 
 if __name__ == '__main__':
